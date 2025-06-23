@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-from backend.models import User, db
+from backend.models import User, db # Importar User para usar sus métodos
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
@@ -17,7 +17,8 @@ def register():
     if User.query.filter_by(username=username).first():
         return jsonify({"message": "El nombre de usuario ya existe"}), 400
 
-    new_user = User(username=username, password=password) # Nota: La contraseña no está hasheada aún.
+    new_user = User(username=username) # Crear usuario sin hashear aún
+    new_user.set_password(password) # Usar el método set_password para hashear y asignar
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "Usuario registrado exitosamente"}), 201
@@ -31,8 +32,7 @@ def login():
 
     user = User.query.filter_by(username=username).first()  # Busca el usuario por nombre de usuario
 
-    # Verifica si el usuario existe y la contraseña coincide (sin hashear)
-    if user and user.password == password:
+    if user and user.check_password(password): # Usar check_password para verificar
         # Aquí iría la lógica para generar y devolver un token (pendiente)
         return jsonify({"message": "Login exitoso", "user_id": user.id}), 200
     else:
