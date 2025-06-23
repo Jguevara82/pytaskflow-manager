@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World</title>
+  </head>
+
+  <body>
+    <form action="/register" method="post" enctype="multipart/form-data">
+      <label for="username">Username:</label><br />
+      <input type="text" id="username" name="username" /><br />
+      <label for="password">Password:</label><br />
+      <input type="password" id="password" name="password" /><br />
+      <label for="profile_picture">Profile Picture:</label><br />
+      <input
+        type="file"
+        id="profile_picture"
+        name="profile_picture"
+      /><br /><br />
+      <button type="button" onclick="prueba()">Prueba</button>
+      <button type="button" onclick="leer()">Leer</button>
+    </form>
+
+    <h1>Hello World</h1>
+    <div id="responseArea"></div>
+  </body>
+</html>
+
+    <script>
+      function prueba(){
+        fetch('/clientes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            accion: 'Ingreso',
+            detalle: 'El usuario ingresó a Prueba',
+            nombre: 'ejemplo',
+          }), // Replace with your actual data
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            const responseArea = document.getElementById('responseArea');
+            responseArea.innerHTML = 'Success: ' + JSON.stringify(data, null, 2); // Indent for readability
+            responseArea.style.color = 'green';
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            const responseArea = document.getElementById('responseArea');
+            // Display the full error object or its string representation
+ responseArea.innerHTML = 'Error: ' + (error.toString());
+ responseArea.style.color = 'red';
+
+          });
+      }
+      function leer(){
+        fetch('/clientes', {
+          method: 'GET'
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            const responseArea = document.getElementById('responseArea');
+            responseArea.innerHTML = 'Success: ' + JSON.stringify(data, null, 2); // Indent for readability
+            responseArea.style.color = 'green';
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            const responseArea = document.getElementById('responseArea');
+            responseArea.innerHTML = 'Error: ' + error.toString();
+            responseArea.style.color = 'red';
+          });
+      }
+    </script>

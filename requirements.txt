@@ -1,0 +1,14 @@
+# Dev environment
+pip
+autopep8
+
+# App
+flask
+
+functions-framework==3.*
+functions-framework
+gunicorn
+email-validator
+requests
+google-cloud-bigquery>=2.0.0,<3.0.0
+google-auth==2.*
