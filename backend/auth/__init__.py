@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
-
+from flask_jwt_extended import create_access_token
+ 
 from backend.models import User, db # Importar User para usar sus métodos
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -33,8 +34,8 @@ def login():
     user = User.query.filter_by(username=username).first()  # Busca el usuario por nombre de usuario
 
     if user and user.check_password(password): # Usar check_password para verificar
-        # Aquí iría la lógica para generar y devolver un token (pendiente)
-        return jsonify({"message": "Login exitoso", "user_id": user.id}), 200
+        access_token = create_access_token(identity=str(user.id)) # Genera el token JWT
+        return jsonify({"message": "Login exitoso", "access_token": access_token}), 200
     else:
         # Devuelve un mensaje de error si las credenciales son incorrectas
         return jsonify({"message": "Nombre de usuario o contraseña incorrectos"}), 401
