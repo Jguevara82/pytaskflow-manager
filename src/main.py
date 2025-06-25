@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from backend.auth.__init__ import auth_bp # Corregir la importación
-from backend.tasks.__init__ import tasks_bp # Corregir la importación
+from backend.tasks.__init__ import tasks_bp
 from backend.models import db, User, Task
 
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, create_access_token
@@ -32,9 +32,8 @@ app.register_blueprint(tasks_bp, url_prefix='/tasks') # Registrar el blueprint d
 
 @app.route('/')
 def index():
-	return "TaskFlow Manager Backend - Welcome"
-
-app.add_url_rule('/', endpoint='index', view_func=index)
+    """Sirve el archivo index.html del frontend."""
+    return render_template('index.html')
 
 if __name__ == '__main__':
 	with app.app_context():

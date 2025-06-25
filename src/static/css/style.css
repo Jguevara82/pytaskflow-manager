@@ -1,0 +1,112 @@
+/* Paleta de colores con variables CSS */
+:root {
+	--primary-color: #3F51B5;
+	/* Azul Índigo Material Design */
+	--primary-color-dark: #303F9F;
+	--primary-color-light: #C5CAE9;
+	--secondary-color: #FF9800;
+	/* Naranja Material Design */
+	--secondary-color-dark: #F57C00;
+	--secondary-color-light: #FFE0B2;
+	--text-color-dark: #212121;
+	--text-color-light: #FFFFFF;
+	--surface-color-light: #F5F5F5;
+	/* Gris claro */
+	--surface-color-dark: #E0E0E0;
+	/* Gris un poco más oscuro */
+	--error-color: #F44336;
+	/* Rojo Material Design */
+	--success-color: #4CAF50;
+	/* Verde Material Design */
+}
+
+/* Custom classes for background colors using CSS variables */
+.bg-primary {
+	background-color: var(--primary-color);
+}
+
+.bg-primary-dark {
+	background-color: var(--primary-color-dark);
+}
+
+.bg-primary-light {
+	background-color: var(--primary-color-light);
+}
+
+.bg-secondary {
+	background-color: var(--secondary-color);
+}
+
+.bg-secondary-dark {
+	background-color: var(--secondary-color-dark);
+}
+
+.bg-secondary-light {
+	background-color: var(--secondary-color-light);
+}
+
+.bg-surface-light {
+	background-color: var(--surface-color-light);
+}
+
+.bg-surface-dark {
+	background-color: var(--surface-color-dark);
+}
+
+.bg-error {
+	background-color: var(--error-color);
+}
+
+.bg-success {
+	background-color: var(--success-color);
+}
+
+button:hover {
+	background-color: var(--primary-color-dark);
+	/* Tono más oscuro al pasar el mouse */
+}
+
+/* Custom classes for text colors using CSS variables */
+.text-primary {
+	color: var(--primary-color);
+}
+
+.text-primary-dark {
+	color: var(--primary-color-dark);
+}
+
+.text-primary-light {
+	color: var(--primary-color-light);
+}
+
+.text-secondary {
+	color: var(--secondary-color);
+}
+
+.text-secondary-dark {
+	color: var(--secondary-color-dark);
+}
+
+button.primary {
+	background-color: var(--primary-color);
+	/* Color primario para botones */
+}
+
+button.primary:hover {
+	background-color: var(--primary-color-dark);
+	/* Tono más oscuro al pasar el mouse */
+}
+
+/* Estilos para botones secundarios o de acento */
+button.secondary {
+	background-color: var(--secondary-color);
+}
+
+button.secondary:hover {
+	background-color: var(--secondary-color-dark);
+}
+
+/* Ocultar secciones por defecto (se mostrarán con JS) */
+.hidden {
+	display: none;
+}
